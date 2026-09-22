@@ -1,0 +1,87 @@
+{
+  "site": {
+    "companyName": "PineRock Services LLC",
+    "phoneDisplay": "+1 (407) 633-1053",
+    "phoneHref": "+14076331053",
+    "whatsappNumber": "14076331053",
+    "addressEs": "Florida, Estados Unidos",
+    "addressEn": "Florida, United States",
+    "domain": "https://pinerock-services.pages.dev"
+  },
+  "hero": {
+    "eyebrowEs": "PineRock Services LLC · Florida",
+    "eyebrowEn": "PineRock Services LLC · Florida",
+    "titleEs": "Reformas bien hechas y <span class=\"hl\">piedra alemana</span> instalada con precisión",
+    "titleEn": "Remodeling done right, with <span class=\"hl\">German stone</span> installed to spec",
+    "leadEs": "Remodelamos interiores y exteriores para viviendas y locales comerciales: drywall, pintura, suelos, azulejo, piedra y acabados decorativos de pared. Cuidamos el detalle, cumplimos los plazos y dejamos la obra limpia.",
+    "leadEn": "We remodel interiors and exteriors for homes and commercial properties: drywall, painting, flooring, tile, stone and decorative wall finishes. Careful detail, dates we keep, and a clean site when we leave.",
+    "facts": [
+      { "es": "Residencial y comercial", "en": "Residential &amp; commercial" },
+      { "es": "Interior y exterior", "en": "Interior &amp; exterior" },
+      { "es": "Atención en español e inglés", "en": "English &amp; Spanish spoken" }
+    ]
+  },
+  "strip": [
+    { "icon": "home", "titleEs": "Casa y negocio", "titleEn": "Homes &amp; businesses", "textEs": "Proyectos residenciales y comerciales.", "textEn": "Residential and commercial projects." },
+    { "icon": "shield", "titleEs": "Trabajo garantizado por escrito", "titleEn": "Scope agreed in writing", "textEs": "Alcance, materiales y plazos acordados antes de empezar.", "textEn": "Scope, materials and dates agreed before we start." },
+    { "icon": "clock", "titleEs": "Respuesta rápida", "titleEn": "Fast reply", "textEs": "Te contestamos por WhatsApp o teléfono.", "textEn": "We answer by WhatsApp or phone." },
+    { "icon": "pin", "titleEs": "Florida, Estados Unidos", "titleEn": "Florida, United States", "textEs": "Servicio local para toda el área.", "textEn": "Local service across the area." }
+  ],
+  "services": [
+    { "icon": "stone", "titleEs": "Instalación de piedra", "titleEn": "Stone installation", "textEs": "Piedra especial importada de Alemania y piedra natural para paredes, fachadas, chimeneas y zonas exteriores. Replanteo, corte y junta cuidada.", "textEn": "Special stone imported from Germany plus natural stone for walls, façades, fireplaces and outdoor areas. Careful layout, cutting and jointing.", "priceEs": "", "priceEn": "" },
+    { "icon": "drywall", "titleEs": "Drywall y tabiquería", "titleEn": "Drywall &amp; partitions", "textEs": "Montaje de paneles, reparación de agujeros y humedades, masillado y lijado hasta dejar una superficie plana lista para pintar.", "textEn": "Board hanging, hole and moisture repair, taping and sanding to a flat surface ready for paint.", "priceEs": "", "priceEn": "" },
+    { "icon": "paint", "titleEs": "Pintura interior y exterior", "titleEn": "Interior &amp; exterior painting", "textEs": "Protección del mobiliario, preparación de la superficie, imprimación y capas de acabado con líneas limpias en esquinas y molduras.", "textEn": "Furniture protection, surface prep, primer and finish coats with clean lines at corners and trim.", "priceEs": "", "priceEn": "" },
+    { "icon": "floor", "titleEs": "Suelos y azulejo", "titleEn": "Flooring &amp; tile", "textEs": "Vinilo, laminado, porcelánico y cerámica. Nivelamos la base, respetamos el despiece y sellamos juntas en baños y cocinas.", "textEn": "Vinyl, laminate, porcelain and ceramic. We level the base, keep the layout true and seal joints in baths and kitchens.", "priceEs": "", "priceEn": "" },
+    { "icon": "wall", "titleEs": "Acabados decorativos de pared", "titleEn": "Decorative wall finishes", "textEs": "Paneles, molduras, microcemento y texturas para dar carácter a un salón, una recepción o un local sin obra pesada.", "textEn": "Panels, trim, micro-cement and textures that give a living room, lobby or shop character without heavy works.", "priceEs": "", "priceEn": "" },
+    { "icon": "custom", "titleEs": "Instalaciones a medida", "titleEn": "Custom installations", "textEs": "Elementos hechos para tu espacio: revestimientos, frentes, encimeras de piedra y detalles que no vienen en catálogo.", "textEn": "Built for your space: cladding, feature walls, stone countertops and details you won't find in a catalogue.", "priceEs": "", "priceEn": "" }
+  ],
+  "stone": {
+    "titleEs": "La piedra especial que traemos de Alemania",
+    "titleEn": "The special stone we bring in from Germany",
+    "leadEs": "Es el material con el que trabajamos a diario y el que da identidad a nuestros proyectos. Llega calibrada, con piezas de medida constante, y eso se nota en el resultado final: juntas regulares y una pared que se lee limpia desde cualquier ángulo.",
+    "leadEn": "It's the material we work with every day and the one that gives our projects their identity. It arrives calibrated, with consistent piece sizes, and that shows in the finish: even joints and a wall that reads clean from any angle.",
+    "bullets": [
+      { "es": "<strong>Pieza calibrada.</strong> Espesor y medida constantes, así que el replanteo sale exacto y se desperdicia menos material.", "en": "<strong>Calibrated pieces.</strong> Consistent thickness and size, so layout comes out exact and less material is wasted." },
+      { "es": "<strong>Interior y exterior.</strong> Sirve para paredes de salón, recepciones, fachadas, porches y zonas de barbacoa.", "en": "<strong>Indoors and out.</strong> Works on living-room walls, lobbies, façades, porches and grill areas." },
+      { "es": "<strong>Mantenimiento sencillo.</strong> Superficie estable que aguanta el clima de Florida con un cuidado mínimo.", "en": "<strong>Low maintenance.</strong> A stable surface that handles the Florida climate with minimal care." },
+      { "es": "<strong>Instalada por quien la conoce.</strong> Nosotros traemos el material y lo colocamos, sin intermediarios ni sorpresas de compatibilidad.", "en": "<strong>Installed by the people who source it.</strong> We bring the material in and set it ourselves — no middlemen, no compatibility surprises." }
+    ],
+    "ctaEs": "Consultar disponibilidad y acabados",
+    "ctaEn": "Ask about availability and finishes"
+  },
+  "steps": [
+    { "titleEs": "Nos cuentas el proyecto", "titleEn": "Tell us about the project", "textEs": "Por WhatsApp, teléfono o formulario. Unas fotos y las medidas aproximadas nos bastan para orientarte.", "textEn": "By WhatsApp, phone or the form. A few photos and rough measurements are enough to point you in the right direction." },
+    { "titleEs": "Visitamos y medimos", "titleEn": "We visit and measure", "textEs": "Vemos el espacio, revisamos el estado de las superficies y hablamos de materiales y acabados contigo.", "textEn": "We see the space, check the condition of the surfaces and talk materials and finishes with you." },
+    { "titleEs": "Recibes el presupuesto", "titleEn": "You get the estimate", "textEs": "Detallado por partidas, con materiales, plazos y precio. Lo revisas con calma antes de decidir.", "textEn": "Itemised, with materials, dates and price. Take your time before deciding." },
+    { "titleEs": "Ejecutamos y entregamos", "titleEn": "We build and hand over", "textEs": "Trabajamos en las fechas acordadas, protegemos tus espacios y hacemos un repaso final contigo antes de cerrar.", "textEn": "We work to the agreed dates, protect your space and walk the job with you before closing." }
+  ],
+  "gallery": [
+    { "id": "g1", "titleEs": "Pared de piedra alemana", "titleEn": "German stone feature wall", "typeEs": "Instalación de piedra", "typeEn": "Stone installation", "descriptionEs": "Salón con revestimiento completo de suelo a techo, piezas calibradas y junta uniforme.", "descriptionEn": "Living room clad floor to ceiling, calibrated pieces and even joints.", "images": ["assets/gallery/pared-piedra-alemana.svg", "assets/gallery/pared-piedra-alemana-2.svg"] },
+    { "id": "g2", "titleEs": "Azulejo de baño", "titleEn": "Bathroom tile", "typeEs": "Suelos y azulejo", "typeEn": "Flooring &amp; tile", "descriptionEs": "Porcelánico a junta corrida con sellado en esquinas.", "descriptionEn": "Porcelain in a running bond, corners sealed.", "images": ["assets/gallery/azulejo-bano.svg"] },
+    { "id": "g3", "titleEs": "Pintura interior", "titleEn": "Interior painting", "typeEs": "Pintura", "typeEn": "Painting", "descriptionEs": "Dos capas de acabado sobre imprimación y masillado.", "descriptionEn": "Two finish coats over primer and taping.", "images": ["assets/gallery/pintura-interior.svg"] },
+    { "id": "g4", "titleEs": "Suelo laminado y vinílico", "titleEn": "Laminate &amp; vinyl flooring", "typeEs": "Suelos y azulejo", "typeEn": "Flooring &amp; tile", "descriptionEs": "Base nivelada y juntas alternadas pieza a pieza.", "descriptionEn": "Levelled subfloor with staggered plank joints.", "images": ["assets/gallery/suelo-laminado.svg"] },
+    { "id": "g5", "titleEs": "Paneles decorativos", "titleEn": "Decorative panelling", "typeEs": "Acabados decorativos", "typeEn": "Decorative finishes", "descriptionEs": "Molduras verticales para recepciones y dormitorios.", "descriptionEn": "Vertical trim for lobbies and bedrooms.", "images": ["assets/gallery/paneles-decorativos.svg"] },
+    { "id": "g6", "titleEs": "Exteriores y fachada", "titleEn": "Exteriors &amp; façade", "typeEs": "Instalación de piedra", "typeEn": "Stone installation", "descriptionEs": "Piedra en porches, muros y zonas de acceso.", "descriptionEn": "Stone on porches, walls and entryways.", "images": ["assets/gallery/exteriores-fachada.svg"] }
+  ],
+  "galleryNoteEs": "Las imágenes de esta sección son representaciones de los tipos de acabado que instalamos. Pide fotos de trabajos reales y te las enviamos por WhatsApp.",
+  "galleryNoteEn": "The images in this section illustrate the types of finish we install. Ask us for photos of completed jobs and we'll send them over WhatsApp.",
+  "benefits": [
+    { "icon": "roof", "titleEs": "Un solo interlocutor", "titleEn": "One point of contact", "textEs": "Coordinamos todos los oficios. No tienes que perseguir a cinco gremios distintos ni decidir quién va primero.", "textEn": "We coordinate every trade. No chasing five different crews or deciding who goes first." },
+    { "icon": "doc", "titleEs": "Presupuesto claro", "titleEn": "A clear estimate", "textEs": "Partidas detalladas antes de empezar. Si algo cambia durante la obra, lo hablamos y lo aprobamos por escrito.", "textEn": "Itemised before we start. If something changes mid-job, we discuss it and approve it in writing." },
+    { "icon": "check", "titleEs": "Material que dura", "titleEn": "Materials that last", "textEs": "Trabajamos con piedra importada de Alemania y marcas contrastadas. Lo barato sale caro cuando hay que repetirlo.", "textEn": "We work with stone imported from Germany and proven brands. Cheap materials get expensive when the work has to be redone." },
+    { "icon": "clock", "titleEs": "Plazos que se cumplen", "titleEn": "Dates we keep", "textEs": "Fechas acordadas al firmar y aviso inmediato si algo se mueve. Tu negocio o tu casa no pueden estar parados sin saber por qué.", "textEn": "Dates agreed at signing and immediate notice if anything shifts. Your home or business shouldn't sit idle without knowing why." },
+    { "icon": "checkbig", "titleEs": "Obra limpia", "titleEn": "A clean site", "textEs": "Protegemos muebles y suelos, retiramos escombros y te entregamos el espacio listo para usar el mismo día.", "textEn": "We protect furniture and floors, remove debris and hand the space back ready to use the same day." },
+    { "icon": "chat", "titleEs": "Te atendemos en tu idioma", "titleEn": "We speak your language", "textEs": "Español e inglés, por WhatsApp o por teléfono, con respuestas en lenguaje sencillo y sin tecnicismos innecesarios.", "textEn": "Spanish and English, by WhatsApp or phone, in plain language without unnecessary jargon." }
+  ],
+  "faq": [
+    { "qEs": "¿Cuánto cuesta una reforma?", "qEn": "How much does a remodel cost?", "aEs": "Depende de los metros, del estado de las superficies y de los materiales que elijas. Por eso medimos en persona antes de dar un precio: preferimos un presupuesto realista a una cifra por teléfono que luego cambie.", "aEn": "It depends on the square footage, the condition of the surfaces and the materials you choose. That's why we measure in person before quoting: a realistic estimate beats a phone number that changes later." },
+    { "qEs": "¿El presupuesto tiene coste?", "qEn": "Is the estimate free?", "aEs": "No. Escríbenos, concretamos la visita y recibes el presupuesto detallado sin compromiso de contratar.", "aEn": "No. Message us, we'll set up a visit, and you get the itemised estimate with no obligation to hire." },
+    { "qEs": "¿Trabajáis con locales comerciales?", "qEn": "Do you work with commercial properties?", "aEs": "Sí. Hacemos oficinas, tiendas, restaurantes y zonas comunes. Cuando hace falta, organizamos el trabajo fuera del horario de apertura para no cortar tu actividad.", "aEn": "Yes. Offices, shops, restaurants and common areas. When needed, we schedule work outside opening hours so your business keeps running." },
+    { "qEs": "¿Qué es exactamente la piedra que traéis de Alemania?", "qEn": "What exactly is the stone you bring from Germany?", "aEs": "Es un material de revestimiento importado que usamos en paredes interiores y exteriores. Llega en piezas calibradas, lo que permite una junta muy regular. En la visita te enseñamos las muestras disponibles y los formatos que podemos pedir.", "aEn": "It's an imported cladding material we use on interior and exterior walls. It arrives in calibrated pieces, which allows for very even joints. At the visit we'll show you the available samples and the formats we can order." },
+    { "qEs": "¿Cuánto tarda la obra?", "qEn": "How long does the work take?", "aEs": "Un trabajo puntual (una pared, un baño, pintura de una vivienda) suele resolverse en días. Una reforma integral se planifica por fases. Te damos las fechas dentro del presupuesto, antes de que decidas.", "aEn": "A single job (one wall, one bathroom, painting a home) usually takes days. A full remodel is planned in phases. You get the dates inside the estimate, before you decide." },
+    { "qEs": "¿Puedo aportar yo el material?", "qEn": "Can I supply the materials myself?", "aEs": "Sí, podemos instalar material que compres tú. Antes revisamos que sea adecuado para la superficie y el uso, y te lo decimos claro si vemos un problema.", "aEn": "Yes, we can install materials you buy. We'll check first that they suit the surface and the use, and we'll tell you plainly if we see a problem." },
+    { "qEs": "¿En qué zona trabajáis?", "qEn": "What area do you cover?", "aEs": "Estamos en Florida, Estados Unidos. Escríbenos con la dirección del proyecto y te confirmamos si entra en nuestra zona de servicio.", "aEn": "We're based in Florida, United States. Send us the project address and we'll confirm whether it falls within our service area." }
+  ],
+  "footerAboutEs": "Reformas, renovación e instalaciones a medida para viviendas y negocios en Florida. Especialistas en piedra importada de Alemania y acabados de pared.",
+  "footerAboutEn": "Remodeling, renovation and custom installations for homes and businesses in Florida. Specialists in stone imported from Germany and wall finishes."
+}

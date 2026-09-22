@@ -1,0 +1,5 @@
+<svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+<rect width="320" height="240" fill="#E3E8EC"/>
+<g stroke="#9FB0BD" stroke-width="1.4" fill="none"><path d="M40 0v240M100 0v240M160 0v240M220 0v240M280 0v240"/><path d="M0 60h320M0 120h320M0 180h320"/></g>
+<g fill="#013F80" opacity=".07"><rect x="40" y="60" width="60" height="60"/><rect x="160" y="0" width="60" height="60"/><rect x="220" y="120" width="60" height="60"/><rect x="100" y="180" width="60" height="60"/></g>
+</svg>

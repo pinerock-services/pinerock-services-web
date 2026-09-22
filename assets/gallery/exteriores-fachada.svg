@@ -1,0 +1,6 @@
+<svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+<rect width="320" height="240" fill="#CBD8E4"/>
+<path d="M0 150 60 96l46 34 58-58 62 48 44-30 50 36v96H0Z" fill="#013F80" opacity=".16"/>
+<path d="M0 176 70 132l52 32 62-44 58 40 78-42v122H0Z" fill="#31920B" opacity=".18"/>
+<g stroke="#7F91A3" stroke-width="1.2" fill="none" opacity=".6"><path d="M0 190h320M0 214h320"/><path d="M60 190v50M140 190v50M220 190v50M290 190v50"/></g>
+</svg>

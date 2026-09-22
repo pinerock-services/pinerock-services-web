@@ -1,0 +1,5 @@
+# PineRock Services LLC
+User-agent: *
+Allow: /
+
+Sitemap: https://pinerock-services.pages.dev/sitemap.xml

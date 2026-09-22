@@ -1,0 +1,12 @@
+# Configuración de referencia para Cloudflare Pages.
+# No hace falta usar wrangler (la línea de comandos) para publicar: este
+# archivo solo documenta qué recursos hay que crear desde el panel web de
+# Cloudflare. Ver README.md, sección "Configurar el área privada".
+name = "pinerock-services"
+pages_build_output_dir = "."
+
+# KV namespace donde vive el contenido en vivo (content.json) y las fotos
+# subidas desde el panel de administración. Se crea en:
+# Cloudflare dashboard → Workers & Pages → KV → Create namespace
+# y se enlaza en Pages → Settings → Functions → KV namespace bindings
+# con el nombre de variable exacto: PINEROCK_KV

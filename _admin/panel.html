@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel privado — PineRock Services LLC</title>
+<style>
+:root{
+  --blue:#013F80;--blue-deep:#022C58;--green:#31920B;--green-deep:#256F08;
+  --ink:#10202E;--ink-soft:#42596C;--mist:#EDF2F7;--line:#C9D7E4;--white:#fff;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--mist);color:var(--ink);font:400 15px/1.5 -apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{
+  position:sticky;top:0;z-index:50;background:var(--blue);color:#fff;padding:14px 20px;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 6px 18px -12px rgba(0,0,0,.5);
+}
+header h1{font-size:1.05rem;margin:0;font-weight:700}
+header .sub{font-size:.82rem;opacity:.85}
+header .spacer{flex:1}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap}
+button,.filebtn{
+  font:600 .88rem/1 inherit;border:0;border-radius:9px;padding:10px 14px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-deep)}
+.btn-light{background:rgba(255,255,255,.16);color:#fff}
+.btn-light:hover{background:rgba(255,255,255,.28)}
+.btn-danger{background:#fde8e6;color:#B3261E}
+.btn-danger:hover{background:#f8d2ce}
+.btn-ghost{background:var(--mist);color:var(--ink)}
+.btn-ghost:hover{background:var(--line)}
+.btn-sm{padding:7px 10px;font-size:.8rem;border-radius:7px}
+main{max-width:980px;margin:0 auto;padding:24px 18px 90px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;position:sticky;top:64px;z-index:40;background:var(--mist);padding:10px 0}
+.tab{background:#fff;border:1px solid var(--line);color:var(--ink-soft);padding:9px 14px;border-radius:999px;font-weight:600;font-size:.85rem;cursor:pointer}
+.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.panel{display:none}
+.panel.active{display:block}
+.section{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:18px}
+.section h2{font-size:1.05rem;margin:0 0 4px}
+.section .hint{color:var(--ink-soft);font-size:.85rem;margin:0 0 16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;font-size:.83rem;margin-bottom:5px;color:var(--ink)}
+.field .help{font-weight:400;color:var(--ink-soft);font-size:.78rem;display:block;margin-top:3px}
+.field input[type=text],.field input[type=tel],.field input[type=url],.field textarea,.field select{
+  width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;font:inherit;background:#fff;color:var(--ink);
+}
+.field textarea{min-height:70px;resize:vertical}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lang-pair{border:1px dashed var(--line);border-radius:9px;padding:12px;margin-bottom:14px;background:#FBFDFE}
+.lang-pair .tag{display:inline-block;font-size:.72rem;font-weight:800;color:var(--blue);background:var(--mist);border-radius:999px;padding:2px 8px;margin-bottom:8px}
+.item-card{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px;position:relative;background:#FDFEFF}
+.item-card .item-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
+.item-card .item-head strong{font-size:.92rem}
+.item-actions{display:flex;gap:6px;flex-wrap:wrap}
+.add-row{margin-top:6px}
+.icon-select{display:flex;gap:8px;align-items:center}
+.icon-preview{width:34px;height:34px;border-radius:8px;background:var(--mist);display:grid;place-items:center;color:var(--blue);flex:0 0 auto}
+.gallery-images{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.gimg{position:relative;width:96px;height:72px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--mist)}
+.gimg img{width:100%;height:100%;object-fit:cover;display:block}
+.gimg button{
+  position:absolute;top:3px;right:3px;background:rgba(179,38,30,.9);color:#fff;border:0;width:20px;height:20px;
+  border-radius:50%;font-size:.7rem;line-height:1;cursor:pointer;padding:0;display:grid;place-items:center;
+}
+.gimg .cover-badge{
+  position:absolute;left:3px;bottom:3px;background:rgba(1,63,128,.85);color:#fff;font-size:.62rem;
+  font-weight:700;padding:1px 6px;border-radius:999px;
+}
+.dropzone{
+  border:2px dashed var(--line);border-radius:9px;padding:16px;text-align:center;color:var(--ink-soft);
+  font-size:.85rem;cursor:pointer;background:#fff;
+}
+.dropzone.drag{border-color:var(--green);background:#F1FAEE;color:var(--green-deep)}
+.dropzone input{display:none}
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;
+  padding:12px 20px;border-radius:10px;font-size:.9rem;box-shadow:0 12px 30px -12px rgba(0,0,0,.6);
+  display:none;z-index:100;max-width:90vw;text-align:center;
+}
+.toast.show{display:block}
+.status{font-size:.78rem;color:var(--ink-soft);margin-top:4px}
+.intro{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:18px}
+.intro ol{margin:8px 0 0;padding-left:20px}
+.intro li{margin-bottom:6px}
+code{background:var(--mist);padding:1px 6px;border-radius:5px;font-size:.85em}
+@media (max-width:640px){
+  .two-col{grid-template-columns:1fr}
+  header{padding:12px 14px}
+  header h1{font-size:.95rem}
+  .toolbar button{padding:9px 11px;font-size:.82rem}
+  main{padding:16px 12px 90px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Panel privado — PineRock Services LLC</h1>
+    <div class="sub" id="sessionSub">Sesión de administrador activa.</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="toolbar">
+    <label class="filebtn btn-light">
+      📂 Importar content.json
+      <input type="file" id="loadJson" accept="application/json" style="display:none">
+    </label>
+    <button class="btn-light" id="btnReset" type="button">↺ Descartar cambios</button>
+    <button class="btn-light" id="btnBackup" type="button">⬇ Copia de seguridad</button>
+    <button class="btn-primary" id="btnSave" type="button">💾 Guardar en la web</button>
+    <button class="btn-danger" id="btnLogout" type="button">Cerrar sesión</button>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <strong>Cómo funciona este editor</strong>
+    <ol>
+      <li>Esta página es privada: solo se ve tras iniciar sesión con la contraseña de administrador.</li>
+      <li>Edita lo que quieras en las pestañas de abajo. Los cambios quedan solo en tu navegador hasta que los guardes.</li>
+      <li>Las fotos que añadas a la galería se suben automáticamente al guardar, ya optimizadas.</li>
+      <li>Cuando termines, pulsa <strong>«💾 Guardar en la web»</strong>: los cambios quedan publicados al momento, sin subir ningún archivo a mano.</li>
+      <li><strong>«⬇ Copia de seguridad»</strong> descarga el <code>content.json</code> actual a tu ordenador, por si quieres guardar un histórico.</li>
+    </ol>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div id="panels"></div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+var ICON_OPTIONS = ["stone","drywall","paint","floor","wall","custom","home","shield","clock","pin","roof","doc","check","checkbig","chat"];
+var ICON_LABEL = {
+  stone:"Piedra", drywall:"Drywall", paint:"Pintura", floor:"Suelos", wall:"Acabados de pared", custom:"A medida",
+  home:"Casa", shield:"Escudo", clock:"Reloj", pin:"Ubicación", roof:"Tejado", doc:"Documento",
+  check:"Check", checkbig:"Check grande", chat:"Chat"
+};
+var DEFAULT_CONTENT = null; // se rellena al cargar
+var STATE = null;           // contenido actual en edicion
+var IMAGE_BLOBS = {};       // rutaTemporal -> Blob, solo para previsualizar mientras se sube
+var UPLOADING = 0;          // fotos subiendose en este momento
+
+function toast(msg,ms){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._h);
+  t._h=setTimeout(function(){t.classList.remove('show');}, ms||2600);
+}
+
+function uid(prefix){ return prefix+'_'+Math.random().toString(36).slice(2,8); }
+
+// ---------- carga inicial: intenta leer content.json del mismo directorio ----------
+function boot(){
+  fetch('/api/session',{cache:'no-store'}).then(function(r){ return r.json(); }).then(function(s){
+    if(!s.authenticated){
+      window.location.href='/admin';
+      return;
+    }
+    return fetch('/api/content',{cache:'no-store'}).then(function(r){
+      if(!r.ok) throw 0; return r.json();
+    }).then(function(data){
+      DEFAULT_CONTENT = JSON.parse(JSON.stringify(data));
+      STATE = data;
+      buildUI();
+      toast('Contenido actual cargado.');
+    });
+  }).catch(function(){
+    DEFAULT_CONTENT = JSON.parse(JSON.stringify(FALLBACK_CONTENT));
+    STATE = JSON.parse(JSON.stringify(FALLBACK_CONTENT));
+    buildUI();
+    toast('No se pudo leer el contenido publicado: empezando con el contenido de ejemplo. Puedes importar tu content.json con el botón de arriba.', 4200);
+  });
+}
+
+document.getElementById('loadJson').addEventListener('change', function(e){
+  var f=e.target.files[0]; if(!f) return;
+  var reader=new FileReader();
+  reader.onload=function(){
+    try{
+      var data=JSON.parse(reader.result);
+      STATE=data; IMAGE_BLOBS={};
+      buildUI();
+      toast('content.json cargado correctamente.');
+    }catch(err){ toast('Ese archivo no es un content.json válido.'); }
+  };
+  reader.readAsText(f);
+});
+
+document.getElementById('btnReset').addEventListener('click', function(){
+  if(!confirm('¿Descartar los cambios de esta sesión y volver al contenido con el que empezaste a editar?')) return;
+  STATE = JSON.parse(JSON.stringify(DEFAULT_CONTENT));
+  IMAGE_BLOBS = {};
+  buildUI();
+  toast('Contenido restablecido.');
+});
+
+// ---------- construir pestañas ----------
+var TABS = [
+  {id:'contacto', label:'Contacto'},
+  {id:'inicio', label:'Portada'},
+  {id:'servicios', label:'Servicios'},
+  {id:'piedra', label:'Piedra alemana'},
+  {id:'proceso', label:'Cómo funciona'},
+  {id:'galeria', label:'Galería de proyectos'},
+  {id:'beneficios', label:'Ventajas'},
+  {id:'faq', label:'Preguntas frecuentes'},
+  {id:'pie', label:'Pie de página'}
+];
+
+function buildUI(){
+  var tabsEl=document.getElementById('tabs'); tabsEl.innerHTML='';
+  var panelsEl=document.getElementById('panels'); panelsEl.innerHTML='';
+  TABS.forEach(function(t,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' active':''); b.type='button'; b.textContent=t.label; b.dataset.tab=t.id;
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+      document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      document.getElementById('panel-'+t.id).classList.add('active');
+    });
+    tabsEl.appendChild(b);
+    var p=document.createElement('div'); p.className='panel'+(i===0?' active':''); p.id='panel-'+t.id;
+    panelsEl.appendChild(p);
+  });
+  renderContacto(); renderInicio(); renderServicios(); renderPiedra();
+  renderProceso(); renderGaleria(); renderBeneficios(); renderFaq(); renderPie();
+}
+
+function fieldRow(label,help,inputHtml){
+  return '<div class="field"><label>'+label+(help?'<span class="help">'+help+'</span>':'')+'</label>'+inputHtml+'</div>';
+}
+function bindText(sel, getPath, setFn){
+  document.querySelectorAll(sel).forEach(function(el){
+    el.addEventListener('input', function(){ setFn(el.value); });
+  });
+}
+
+// ================= CONTACTO =================
+function renderContacto(){
+  var p=document.getElementById('panel-contacto'); var s=STATE.site;
+  p.innerHTML =
+    '<div class="section"><h2>Datos de contacto</h2>' +
+    '<p class="hint">Estos datos se usan en toda la web: cabecera, botón flotante de WhatsApp, formulario de presupuesto y pie de página.</p>' +
+    '<div class="two-col">' +
+      fieldRow('Teléfono (como se muestra)','Ej.: +1 (407) 633-1053','<input type="text" id="c-phoneDisplay" value="'+esc(s.phoneDisplay)+'">') +
+      fieldRow('Teléfono (solo dígitos, con código de país)','Se usa en los enlaces de llamada. Ej.: +14076331053','<input type="text" id="c-phoneHref" value="'+esc(s.phoneHref)+'">') +
+    '</div>' +
+    fieldRow('Número de WhatsApp','Solo dígitos con código de país, sin +, espacios ni guiones. Ej.: 14076331053','<input type="text" id="c-wa" value="'+esc(s.whatsappNumber)+'">') +
+    '<div class="two-col">' +
+      fieldRow('Dirección (español)','','<input type="text" id="c-addrEs" value="'+esc(s.addressEs)+'">') +
+      fieldRow('Address (English)','','<input type="text" id="c-addrEn" value="'+esc(s.addressEn)+'">') +
+    '</div>' +
+    fieldRow('Dominio de la web publicada','Solo afecta a enlaces internos para buscadores. Ej.: https://tu-dominio.com','<input type="text" id="c-domain" value="'+esc(s.domain)+'">') +
+    '</div>';
+  ['c-phoneDisplay','c-phoneHref','c-wa','c-addrEs','c-addrEn','c-domain'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', function(e){
+      var v=e.target.value;
+      if(id==='c-phoneDisplay') s.phoneDisplay=v;
+      if(id==='c-phoneHref') s.phoneHref=v;
+      if(id==='c-wa') s.whatsappNumber=v.replace(/[^0-9]/g,'');
+      if(id==='c-addrEs') s.addressEs=v;
+      if(id==='c-addrEn') s.addressEn=v;
+      if(id==='c-domain') s.domain=v;
+    });
+  });
+}
+
+// ================= INICIO (hero) =================
+function renderInicio(){
+  var p=document.getElementById('panel-inicio'); var h=STATE.hero;
+  p.innerHTML =
+    '<div class="section"><h2>Portada (sección principal)</h2>' +
+    '<p class="hint">El titular admite <code>&lt;span class="hl"&gt;...&lt;/span&gt;</code> para resaltar una parte en azul, si quieres mantenerlo.</p>' +
+    langPair('Texto pequeño sobre el titular','h-eyebrowEs','h-eyebrowEn', h.eyebrowEs, h.eyebrowEn) +
+    langPair('Titular principal (admite HTML simple)','h-titleEs','h-titleEn', h.titleEs, h.titleEn, true) +
+    langPair('Texto de introducción','h-leadEs','h-leadEn', h.leadEs, h.leadEn, false, true) +
+    '<div class="field"><label>Frases cortas debajo de los botones</label></div>' +
+    '<div id="hero-facts-list"></div>' +
+    '<button class="btn-ghost btn-sm add-row" id="addFact" type="button">+ Añadir frase</button>' +
+    '</div>';
+  var list=document.getElementById('hero-facts-list');
+  function paintFacts(){
+    list.innerHTML='';
+    h.facts.forEach(function(f,i){
+      var row=document.createElement('div'); row.className='item-card';
+      row.innerHTML =
+        '<div class="item-head"><strong>Frase '+(i+1)+'</strong><div class="item-actions">'+
+          '<button class="btn-danger btn-sm" data-del="'+i+'" type="button">Eliminar</button></div></div>'+
+        '<div class="two-col">'+
+          fieldRow('Español','','<input type="text" class="fact-es" data-i="'+i+'" value="'+esc(f.es)+'">')+
+          fieldRow('English','','<input type="text" class="fact-en" data-i="'+i+'" value="'+esc(f.en)+'">')+
+        '</div>';
+      list.appendChild(row);
+    });
+    list.querySelectorAll('.fact-es').forEach(function(el){ el.addEventListener('input',function(){ h.facts[+el.dataset.i].es=el.value; }); });
+    list.querySelectorAll('.fact-en').forEach(function(el){ el.addEventListener('input',function(){ h.facts[+el.dataset.i].en=el.value; }); });
+    list.querySelectorAll('[data-del]').forEach(function(el){ el.addEventListener('click',function(){ h.facts.splice(+el.dataset.del,1); paintFacts(); }); });
+  }
+  paintFacts();
+  document.getElementById('addFact').addEventListener('click', function(){ h.facts.push({es:'',en:''}); paintFacts(); });
+  bindLangPair('h-eyebrowEs','h-eyebrowEn',h,'eyebrowEs','eyebrowEn');
+  bindLangPair('h-titleEs','h-titleEn',h,'titleEs','titleEn');
+  bindLangPair('h-leadEs','h-leadEn',h,'leadEs','leadEn');
+}
+
+function langPair(label, idEs, idEn, valEs, valEn, oneLine, textarea){
+  var tag = textarea ? 'textarea' : (oneLine?'input type="text"':'input type="text"');
+  return '<div class="lang-pair"><span class="tag">'+label+'</span>' +
+    '<div class="two-col">' +
+      '<div class="field"><label>Español</label>' + (textarea? '<textarea id="'+idEs+'">'+esc(valEs)+'</textarea>' : '<input type="text" id="'+idEs+'" value="'+esc(valEs)+'">') + '</div>' +
+      '<div class="field"><label>English</label>' + (textarea? '<textarea id="'+idEn+'">'+esc(valEn)+'</textarea>' : '<input type="text" id="'+idEn+'" value="'+esc(valEn)+'">') + '</div>' +
+    '</div></div>';
+}
+function bindLangPair(idEs, idEn, obj, keyEs, keyEn){
+  var elEs=document.getElementById(idEs), elEn=document.getElementById(idEn);
+  if(elEs) elEs.addEventListener('input', function(){ obj[keyEs]=elEs.value; });
+  if(elEn) elEn.addEventListener('input', function(){ obj[keyEn]=elEn.value; });
+}
+
+// ================= SERVICIOS =================
+function renderServicios(){
+  var p=document.getElementById('panel-servicios');
+  p.innerHTML = '<div class="section"><h2>Servicios</h2><p class="hint">El precio es opcional: si lo dejas en blanco, no se muestra ninguna etiqueta de precio en esa tarjeta.</p><div id="services-list"></div><button class="btn-ghost btn-sm add-row" id="addService" type="button">+ Añadir servicio</button></div>';
+  paintServices();
+  document.getElementById('addService').addEventListener('click', function(){
+    STATE.services.push({icon:'custom',titleEs:'',titleEn:'',textEs:'',textEn:'',priceEs:'',priceEn:''});
+    paintServices();
+  });
+}
+function paintServices(){
+  var list=document.getElementById('services-list'); list.innerHTML='';
+  STATE.services.forEach(function(sv,i){
+    var card=document.createElement('div'); card.className='item-card';
+    card.innerHTML =
+      '<div class="item-head"><strong>Servicio '+(i+1)+(sv.titleEs?': '+esc(sv.titleEs):'')+'</strong>'+
+      '<div class="item-actions">'+
+        (i>0?'<button class="btn-ghost btn-sm" data-up="'+i+'" type="button">↑</button>':'')+
+        (i<STATE.services.length-1?'<button class="btn-ghost btn-sm" data-down="'+i+'" type="button">↓</button>':'')+
+        '<button class="btn-danger btn-sm" data-del="'+i+'" type="button">Eliminar</button>'+
+      '</div></div>'+
+      '<div class="field"><label>Icono</label>'+iconSelect('sv-icon-'+i, sv.icon)+'</div>'+
+      '<div class="two-col">'+
+        fieldRow('Título (español)','','<input type="text" class="sv-titleEs" data-i="'+i+'" value="'+esc(sv.titleEs)+'">')+
+        fieldRow('Title (English)','','<input type="text" class="sv-titleEn" data-i="'+i+'" value="'+esc(sv.titleEn)+'">')+
+      '</div>'+
+      '<div class="two-col">'+
+        fieldRow('Descripción (español)','','<textarea class="sv-textEs" data-i="'+i+'">'+esc(sv.textEs)+'</textarea>')+
+        fieldRow('Description (English)','','<textarea class="sv-textEn" data-i="'+i+'">'+esc(sv.textEn)+'</textarea>')+
+      '</div>'+
+      '<div class="two-col">'+
+        fieldRow('Precio (español, opcional)','Ej.: Desde $45/m²','<input type="text" class="sv-priceEs" data-i="'+i+'" value="'+esc(sv.priceEs||'')+'">')+
+        fieldRow('Price (English, optional)','E.g.: From $45/m²','<input type="text" class="sv-priceEn" data-i="'+i+'" value="'+esc(sv.priceEn||'')+'">')+
+      '</div>';
+    list.appendChild(card);
+  });
+  bindIconSelects('sv-icon-', STATE.services);
+  bindArrayField(list,'.sv-titleEs',STATE.services,'titleEs');
+  bindArrayField(list,'.sv-titleEn',STATE.services,'titleEn');
+  bindArrayField(list,'.sv-textEs',STATE.services,'textEs');
+  bindArrayField(list,'.sv-textEn',STATE.services,'textEn');
+  bindArrayField(list,'.sv-priceEs',STATE.services,'priceEs');
+  bindArrayField(list,'.sv-priceEn',STATE.services,'priceEn');
+  bindArrayControls(list, STATE.services, paintServices);
+}
+
+function iconSelect(id, current){
+  var opts = ICON_OPTIONS.map(function(k){ return '<option value="'+k+'"'+(k===current?' selected':'')+'>'+ICON_LABEL[k]+'</option>'; }).join('');
+  return '<select id="'+id+'">'+opts+'</select>';
+}
+function bindIconSelects(prefix, arr){
+  arr.forEach(function(item,i){
+    var el=document.getElementById(prefix+i);
+    if(el) el.addEventListener('change', function(){ item.icon=el.value; });
+  });
+}
+function bindArrayField(scope, sel, arr, key){
+  scope.querySelectorAll(sel).forEach(function(el){
+    el.addEventListener('input', function(){ arr[+el.dataset.i][key]=el.value; });
+  });
+}
+function bindArrayControls(scope, arr, repaint){
+  scope.querySelectorAll('[data-del]').forEach(function(el){
+    el.addEventListener('click', function(){ arr.splice(+el.dataset.del,1); repaint(); });
+  });
+  scope.querySelectorAll('[data-up]').forEach(function(el){
+    el.addEventListener('click', function(){ var i=+el.dataset.up; var t=arr[i]; arr[i]=arr[i-1]; arr[i-1]=t; repaint(); });
+  });
+  scope.querySelectorAll('[data-down]').forEach(function(el){
+    el.addEventListener('click', function(){ var i=+el.dataset.down; var t=arr[i]; arr[i]=arr[i+1]; arr[i+1]=t; repaint(); });
+  });
+}
+
+// ================= PIEDRA ALEMANA =================
+function renderPiedra(){
+  var p=document.getElementById('panel-piedra'); var st=STATE.stone;
+  p.innerHTML =
+    '<div class="section"><h2>Sección "Piedra alemana"</h2>' +
+    langPair('Título de la sección','st-titleEs','st-titleEn', st.titleEs, st.titleEn) +
+    langPair('Texto de introducción','st-leadEs','st-leadEn', st.leadEs, st.leadEn, false, true) +
+    '<div class="field"><label>Puntos destacados (admiten <code>&lt;strong&gt;</code> para negrita)</label></div>' +
+    '<div id="stone-bullets-list"></div>' +
+    '<button class="btn-ghost btn-sm add-row" id="addBullet" type="button">+ Añadir punto</button>' +
+    langPair('Texto del botón','st-ctaEs','st-ctaEn', st.ctaEs, st.ctaEn) +
+    '</div>';
+  bindLangPair('st-titleEs','st-titleEn',st,'titleEs','titleEn');
+  bindLangPair('st-leadEs','st-leadEn',st,'leadEs','leadEn');
+  bindLangPair('st-ctaEs','st-ctaEn',st,'ctaEs','ctaEn');
+  var list=document.getElementById('stone-bullets-list');
+  function paint(){
+    list.innerHTML='';
+    st.bullets.forEach(function(b,i){
+      var row=document.createElement('div'); row.className='item-card';
+      row.innerHTML =
+        '<div class="item-head"><strong>Punto '+(i+1)+'</strong><button class="btn-danger btn-sm" data-del="'+i+'" type="button">Eliminar</button></div>'+
+        '<div class="two-col">'+
+          fieldRow('Español','','<textarea class="b-es" data-i="'+i+'">'+esc(b.es)+'</textarea>')+
+          fieldRow('English','','<textarea class="b-en" data-i="'+i+'">'+esc(b.en)+'</textarea>')+
+        '</div>';
+      list.appendChild(row);
+    });
+    bindArrayField(list,'.b-es',st.bullets,'es');
+    bindArrayField(list,'.b-en',st.bullets,'en');
+    list.querySelectorAll('[data-del]').forEach(function(el){ el.addEventListener('click',function(){ st.bullets.splice(+el.dataset.del,1); paint(); }); });
+  }
+  paint();
+  document.getElementById('addBullet').addEventListener('click', function(){ st.bullets.push({es:'',en:''}); paint(); });
+}
+
+// ================= PROCESO (pasos) =================
+function renderProceso(){
+  var p=document.getElementById('panel-proceso');
+  p.innerHTML = '<div class="section"><h2>Cómo funciona (pasos)</h2><p class="hint">Se numeran automáticamente según el orden.</p><div id="steps-list"></div><button class="btn-ghost btn-sm add-row" id="addStep" type="button">+ Añadir paso</button></div>';
+  paintSteps();
+  document.getElementById('addStep').addEventListener('click', function(){ STATE.steps.push({titleEs:'',titleEn:'',textEs:'',textEn:''}); paintSteps(); });
+}
+function paintSteps(){
+  var list=document.getElementById('steps-list'); list.innerHTML='';
+  STATE.steps.forEach(function(s,i){
+    var card=document.createElement('div'); card.className='item-card';
+    card.innerHTML =
+      '<div class="item-head"><strong>Paso '+(i+1)+'</strong><div class="item-actions">'+
+        (i>0?'<button class="btn-ghost btn-sm" data-up="'+i+'" type="button">↑</button>':'')+
+        (i<STATE.steps.length-1?'<button class="btn-ghost btn-sm" data-down="'+i+'" type="button">↓</button>':'')+
+        '<button class="btn-danger btn-sm" data-del="'+i+'" type="button">Eliminar</button></div></div>'+
+      '<div class="two-col">'+
+        fieldRow('Título (español)','','<input type="text" class="s-titleEs" data-i="'+i+'" value="'+esc(s.titleEs)+'">')+
+        fieldRow('Title (English)','','<input type="text" class="s-titleEn" data-i="'+i+'" value="'+esc(s.titleEn)+'">')+
+      '</div>'+
+      '<div class="two-col">'+
+        fieldRow('Descripción (español)','','<textarea class="s-textEs" data-i="'+i+'">'+esc(s.textEs)+'</textarea>')+
+        fieldRow('Description (English)','','<textarea class="s-textEn" data-i="'+i+'">'+esc(s.textEn)+'</textarea>')+
+      '</div>';
+    list.appendChild(card);
+  });
+  bindArrayField(list,'.s-titleEs',STATE.steps,'titleEs');
+  bindArrayField(list,'.s-titleEn',STATE.steps,'titleEn');
+  bindArrayField(list,'.s-textEs',STATE.steps,'textEs');
+  bindArrayField(list,'.s-textEn',STATE.steps,'textEn');
+  bindArrayControls(list, STATE.steps, paintSteps);
+}
+
+// ================= GALERÍA =================
+function slugify(s){
+  return (s||'proyecto').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40) || 'proyecto';
+}
+function renderGaleria(){
+  var p=document.getElementById('panel-galeria');
+  p.innerHTML =
+    '<div class="section"><h2>Galería de proyectos</h2>' +
+    '<p class="hint">Cada proyecto puede llevar una o varias fotos. La primera foto es la que se ve en la tarjeta; al hacer clic se ven todas.</p>' +
+    '<div id="gallery-list"></div>' +
+    '<button class="btn-primary add-row" id="addProject" type="button">+ Añadir proyecto</button>' +
+    '</div>';
+  paintGallery();
+  document.getElementById('addProject').addEventListener('click', function(){
+    STATE.gallery.push({id: uid('g'), titleEs:'', titleEn:'', typeEs:'', typeEn:'', descriptionEs:'', descriptionEn:'', images:[]});
+    paintGallery();
+  });
+}
+function paintGallery(){
+  var list=document.getElementById('gallery-list'); list.innerHTML='';
+  STATE.gallery.forEach(function(g,i){
+    var card=document.createElement('div'); card.className='item-card';
+    card.innerHTML =
+      '<div class="item-head"><strong>Proyecto '+(i+1)+(g.titleEs?': '+esc(g.titleEs):'')+'</strong><div class="item-actions">'+
+        (i>0?'<button class="btn-ghost btn-sm" data-up="'+i+'" type="button">↑</button>':'')+
+        (i<STATE.gallery.length-1?'<button class="btn-ghost btn-sm" data-down="'+i+'" type="button">↓</button>':'')+
+        '<button class="btn-danger btn-sm" data-del="'+i+'" type="button">Eliminar proyecto</button></div></div>'+
+      '<div class="two-col">'+
+        fieldRow('Título (español)','','<input type="text" class="g-titleEs" data-i="'+i+'" value="'+esc(g.titleEs)+'">')+
+        fieldRow('Title (English)','','<input type="text" class="g-titleEn" data-i="'+i+'" value="'+esc(g.titleEn)+'">')+
+      '</div>'+
+      '<div class="two-col">'+
+        fieldRow('Tipo de trabajo (español)','Ej.: Instalación de piedra','<input type="text" class="g-typeEs" data-i="'+i+'" value="'+esc(g.typeEs)+'">')+
+        fieldRow('Type of work (English)','','<input type="text" class="g-typeEn" data-i="'+i+'" value="'+esc(g.typeEn)+'">')+
+      '</div>'+
+      '<div class="two-col">'+
+        fieldRow('Descripción (español)','','<textarea class="g-descEs" data-i="'+i+'">'+esc(g.descriptionEs)+'</textarea>')+
+        fieldRow('Description (English)','','<textarea class="g-descEn" data-i="'+i+'">'+esc(g.descriptionEn)+'</textarea>')+
+      '</div>'+
+      '<div class="field"><label>Fotos del proyecto<span class="help">La primera es la portada. Arrastra fotos aquí o haz clic para elegirlas (se optimizan automáticamente).</span></label>'+
+        '<div class="gallery-images" data-imgs="'+i+'"></div>'+
+        '<div class="dropzone" data-drop="'+i+'">📷 Arrastra fotos aquí o haz clic para elegir archivos<input type="file" accept="image/*" multiple data-fileinput="'+i+'"></div>'+
+      '</div>';
+    list.appendChild(card);
+  });
+  bindArrayField(list,'.g-titleEs',STATE.gallery,'titleEs');
+  bindArrayField(list,'.g-titleEn',STATE.gallery,'titleEn');
+  bindArrayField(list,'.g-typeEs',STATE.gallery,'typeEs');
+  bindArrayField(list,'.g-typeEn',STATE.gallery,'typeEn');
+  bindArrayField(list,'.g-descEs',STATE.gallery,'descriptionEs');
+  bindArrayField(list,'.g-descEn',STATE.gallery,'descriptionEn');
+  bindArrayControls(list, STATE.gallery, paintGallery);
+
+  STATE.gallery.forEach(function(g,i){ paintProjectImages(i); });
+
+  list.querySelectorAll('[data-drop]').forEach(function(zone){
+    var idx=+zone.dataset.drop;
+    var input=zone.querySelector('input[type=file]');
+    zone.addEventListener('click', function(){ input.click(); });
+    input.addEventListener('change', function(){ handleFiles(idx, input.files); input.value=''; });
+    ['dragenter','dragover'].forEach(function(ev){ zone.addEventListener(ev, function(e){ e.preventDefault(); zone.classList.add('drag'); }); });
+    ['dragleave','drop'].forEach(function(ev){ zone.addEventListener(ev, function(e){ e.preventDefault(); zone.classList.remove('drag'); }); });
+    zone.addEventListener('drop', function(e){ handleFiles(idx, e.dataTransfer.files); });
+  });
+}
+
+function paintProjectImages(i){
+  var wrap=document.querySelector('.gallery-images[data-imgs="'+i+'"]');
+  if(!wrap) return;
+  var g=STATE.gallery[i];
+  wrap.innerHTML='';
+  (g.images||[]).forEach(function(src,j){
+    var box=document.createElement('div'); box.className='gimg';
+    var img=document.createElement('img');
+    img.src = IMAGE_BLOBS[src] ? URL.createObjectURL(IMAGE_BLOBS[src]) : src;
+    box.appendChild(img);
+    if(src && src.indexOf('subiendo:')===0){
+      var busy=document.createElement('span'); busy.className='cover-badge'; busy.style.background='rgba(49,146,11,.9)';
+      busy.textContent='Subiendo…'; box.appendChild(busy);
+    } else if(j===0){
+      var badge=document.createElement('span'); badge.className='cover-badge'; badge.textContent='Portada'; box.appendChild(badge);
+    }
+    var del=document.createElement('button'); del.type='button'; del.textContent='✕';
+    del.addEventListener('click', function(){
+      delete IMAGE_BLOBS[src];
+      g.images.splice(j,1);
+      paintProjectImages(i);
+    });
+    box.appendChild(del);
+    wrap.appendChild(box);
+  });
+}
+
+function handleFiles(projectIndex, files){
+  var g=STATE.gallery[projectIndex];
+  var slug=slugify(g.titleEs||g.titleEn||('proyecto-'+(projectIndex+1)));
+  var imgFiles=[];
+  Array.prototype.forEach.call(files, function(file){ if(/^image\//.test(file.type)) imgFiles.push(file); });
+  if(!imgFiles.length) return;
+
+  imgFiles.forEach(function(file){
+    compressImage(file, 1600, 0.82).then(function(blob){
+      var n = (g.images||[]).length + 1;
+      var tempKey = 'subiendo:'+slug+'-'+Date.now().toString(36)+'-'+n;
+      IMAGE_BLOBS[tempKey]=blob;
+      g.images = g.images||[];
+      g.images.push(tempKey);
+      paintProjectImages(projectIndex);
+      UPLOADING++;
+      uploadImage(blob, slug+'-'+Date.now().toString(36)+'-'+n+'.jpg').then(function(url){
+        var idx=g.images.indexOf(tempKey);
+        if(idx>-1) g.images[idx]=url;
+        delete IMAGE_BLOBS[tempKey];
+        UPLOADING--;
+        paintProjectImages(projectIndex);
+        toast('Foto subida.');
+      }).catch(function(err){
+        var idx=g.images.indexOf(tempKey);
+        if(idx>-1) g.images.splice(idx,1);
+        delete IMAGE_BLOBS[tempKey];
+        UPLOADING--;
+        paintProjectImages(projectIndex);
+        toast('No se pudo subir la foto: '+(err&&err.message?err.message:'error de conexión'), 4500);
+      });
+    });
+  });
+}
+
+function compressImage(file, maxDim, quality){
+  return new Promise(function(resolve){
+    var img=new Image();
+    var url=URL.createObjectURL(file);
+    img.onload=function(){
+      var w=img.width, h=img.height;
+      var scale=Math.min(1, maxDim/Math.max(w,h));
+      var cw=Math.round(w*scale), ch=Math.round(h*scale);
+      var canvas=document.createElement('canvas'); canvas.width=cw; canvas.height=ch;
+      var ctx=canvas.getContext('2d');
+      ctx.drawImage(img,0,0,cw,ch);
+      canvas.toBlob(function(blob){ URL.revokeObjectURL(url); resolve(blob); }, 'image/jpeg', quality);
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); resolve(file); };
+    img.src=url;
+  });
+}
+
+function blobToBase64(blob){
+  return new Promise(function(resolve,reject){
+    var r=new FileReader();
+    r.onload=function(){ resolve(String(r.result).split(',')[1]); };
+    r.onerror=reject;
+    r.readAsDataURL(blob);
+  });
+}
+
+function uploadImage(blob, filename){
+  return blobToBase64(blob).then(function(b64){
+    return fetch('/api/upload', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ filename: filename, contentType: 'image/jpeg', dataBase64: b64 })
+    }).then(function(r){ return r.json().then(function(data){ return {r:r,data:data}; }); })
+      .then(function(res){
+        if(!res.r.ok || !res.data.ok) throw new Error(res.data.error || ('HTTP '+res.r.status));
+        return res.data.url;
+      });
+  });
+}
+
+// ================= BENEFICIOS =================
+function renderBeneficios(){
+  var p=document.getElementById('panel-beneficios');
+  p.innerHTML = '<div class="section"><h2>Ventajas de contratar PineRock</h2><div id="benefits-list"></div><button class="btn-ghost btn-sm add-row" id="addBenefit" type="button">+ Añadir ventaja</button></div>';
+  paintBenefits();
+  document.getElementById('addBenefit').addEventListener('click', function(){ STATE.benefits.push({icon:'check',titleEs:'',titleEn:'',textEs:'',textEn:''}); paintBenefits(); });
+}
+function paintBenefits(){
+  var list=document.getElementById('benefits-list'); list.innerHTML='';
+  STATE.benefits.forEach(function(b,i){
+    var card=document.createElement('div'); card.className='item-card';
+    card.innerHTML =
+      '<div class="item-head"><strong>Ventaja '+(i+1)+'</strong><div class="item-actions">'+
+        (i>0?'<button class="btn-ghost btn-sm" data-up="'+i+'" type="button">↑</button>':'')+
+        (i<STATE.benefits.length-1?'<button class="btn-ghost btn-sm" data-down="'+i+'" type="button">↓</button>':'')+
+        '<button class="btn-danger btn-sm" data-del="'+i+'" type="button">Eliminar</button></div></div>'+
+      '<div class="field"><label>Icono</label>'+iconSelect('bn-icon-'+i, b.icon)+'</div>'+
+      '<div class="two-col">'+
+        fieldRow('Título (español)','','<input type="text" class="bn-titleEs" data-i="'+i+'" value="'+esc(b.titleEs)+'">')+
+        fieldRow('Title (English)','','<input type="text" class="bn-titleEn" data-i="'+i+'" value="'+esc(b.titleEn)+'">')+
+      '</div>'+
+      '<div class="two-col">'+
+        fieldRow('Texto (español)','','<textarea class="bn-textEs" data-i="'+i+'">'+esc(b.textEs)+'</textarea>')+
+        fieldRow('Text (English)','','<textarea class="bn-textEn" data-i="'+i+'">'+esc(b.textEn)+'</textarea>')+
+      '</div>';
+    list.appendChild(card);
+  });
+  bindIconSelects('bn-icon-', STATE.benefits);
+  bindArrayField(list,'.bn-titleEs',STATE.benefits,'titleEs');
+  bindArrayField(list,'.bn-titleEn',STATE.benefits,'titleEn');
+  bindArrayField(list,'.bn-textEs',STATE.benefits,'textEs');
+  bindArrayField(list,'.bn-textEn',STATE.benefits,'textEn');
+  bindArrayControls(list, STATE.benefits, paintBenefits);
+}
+
+// ================= FAQ =================
+function renderFaq(){
+  var p=document.getElementById('panel-faq');
+  p.innerHTML = '<div class="section"><h2>Preguntas frecuentes</h2><div id="faq-list-e"></div><button class="btn-ghost btn-sm add-row" id="addFaq" type="button">+ Añadir pregunta</button></div>';
+  paintFaq();
+  document.getElementById('addFaq').addEventListener('click', function(){ STATE.faq.push({qEs:'',qEn:'',aEs:'',aEn:''}); paintFaq(); });
+}
+function paintFaq(){
+  var list=document.getElementById('faq-list-e'); list.innerHTML='';
+  STATE.faq.forEach(function(f,i){
+    var card=document.createElement('div'); card.className='item-card';
+    card.innerHTML =
+      '<div class="item-head"><strong>Pregunta '+(i+1)+'</strong><div class="item-actions">'+
+        (i>0?'<button class="btn-ghost btn-sm" data-up="'+i+'" type="button">↑</button>':'')+
+        (i<STATE.faq.length-1?'<button class="btn-ghost btn-sm" data-down="'+i+'" type="button">↓</button>':'')+
+        '<button class="btn-danger btn-sm" data-del="'+i+'" type="button">Eliminar</button></div></div>'+
+      '<div class="two-col">'+
+        fieldRow('Pregunta (español)','','<input type="text" class="f-qEs" data-i="'+i+'" value="'+esc(f.qEs)+'">')+
+        fieldRow('Question (English)','','<input type="text" class="f-qEn" data-i="'+i+'" value="'+esc(f.qEn)+'">')+
+      '</div>'+
+      '<div class="two-col">'+
+        fieldRow('Respuesta (español)','','<textarea class="f-aEs" data-i="'+i+'">'+esc(f.aEs)+'</textarea>')+
+        fieldRow('Answer (English)','','<textarea class="f-aEn" data-i="'+i+'">'+esc(f.aEn)+'</textarea>')+
+      '</div>';
+    list.appendChild(card);
+  });
+  bindArrayField(list,'.f-qEs',STATE.faq,'qEs');
+  bindArrayField(list,'.f-qEn',STATE.faq,'qEn');
+  bindArrayField(list,'.f-aEs',STATE.faq,'aEs');
+  bindArrayField(list,'.f-aEn',STATE.faq,'aEn');
+  bindArrayControls(list, STATE.faq, paintFaq);
+}
+
+// ================= PIE DE PÁGINA =================
+function renderPie(){
+  var p=document.getElementById('panel-pie');
+  p.innerHTML = '<div class="section"><h2>Texto del pie de página</h2>' +
+    langPair('Descripción breve de la empresa','fa-es','fa-en', STATE.footerAboutEs||'', STATE.footerAboutEn||'', false, true) +
+    '</div>';
+  document.getElementById('fa-es').addEventListener('input', function(e){ STATE.footerAboutEs=e.target.value; });
+  document.getElementById('fa-en').addEventListener('input', function(e){ STATE.footerAboutEn=e.target.value; });
+}
+
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
+// ================= DESCARGA =================
+function pendingUploadCount(){
+  return Object.keys(IMAGE_BLOBS).length;
+}
+
+document.getElementById('btnSave').addEventListener('click', function(){
+  if(pendingUploadCount() > 0){
+    toast('Espera a que terminen de subirse las fotos antes de guardar.', 3200);
+    return;
+  }
+  var btn=this; btn.disabled=true; btn.textContent='Guardando…';
+  fetch('/api/content', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(STATE)
+  }).then(function(r){ return r.json().then(function(data){ return {r:r,data:data}; }); })
+    .then(function(res){
+      if(!res.r.ok || !res.data.ok) throw new Error(res.data.error || ('HTTP '+res.r.status));
+      DEFAULT_CONTENT = JSON.parse(JSON.stringify(STATE));
+      btn.disabled=false; btn.textContent='💾 Guardar en la web';
+      toast('Guardado. Los cambios ya están en vivo en la web.', 3200);
+    })
+    .catch(function(err){
+      console.error(err);
+      btn.disabled=false; btn.textContent='💾 Guardar en la web';
+      toast('No se pudo guardar: '+(err&&err.message?err.message:'error de conexión')+'. Revisa la sesión o vuelve a intentarlo.', 5200);
+    });
+});
+
+document.getElementById('btnBackup').addEventListener('click', function(){
+  var jsonOut = JSON.stringify(STATE, null, 2);
+  var blob = new Blob([jsonOut], {type:'application/json'});
+  var a=document.createElement('a');
+  var stamp=new Date().toISOString().slice(0,16).replace(/[:T]/g,'-');
+  a.href=URL.createObjectURL(blob);
+  a.download='content-'+stamp+'.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  toast('Copia de seguridad descargada.');
+});
+
+document.getElementById('btnLogout').addEventListener('click', function(){
+  fetch('/api/logout', {method:'POST'}).finally(function(){
+    window.location.href='/admin';
+  });
+});
+
+// Contenido de ejemplo por si el editor se abre sin content.json al lado
+var FALLBACK_CONTENT = {"site":{"companyName":"PineRock Services LLC","phoneDisplay":"+1 (407) 633-1053","phoneHref":"+14076331053","whatsappNumber":"14076331053","addressEs":"Florida, Estados Unidos","addressEn":"Florida, United States","domain":"https://pinerock-services.pages.dev"},"hero":{"eyebrowEs":"PineRock Services LLC · Florida","eyebrowEn":"PineRock Services LLC · Florida","titleEs":"Reformas bien hechas y <span class=\"hl\">piedra alemana</span> instalada con precisión","titleEn":"Remodeling done right, with <span class=\"hl\">German stone</span> installed to spec","leadEs":"Remodelamos interiores y exteriores.","leadEn":"We remodel interiors and exteriors.","facts":[{"es":"Residencial y comercial","en":"Residential &amp; commercial"}]},"strip":[{"icon":"home","titleEs":"Casa y negocio","titleEn":"Homes &amp; businesses","textEs":"Proyectos residenciales y comerciales.","textEn":"Residential and commercial projects."}],"services":[{"icon":"stone","titleEs":"Instalación de piedra","titleEn":"Stone installation","textEs":"","textEn":"","priceEs":"","priceEn":""}],"stone":{"titleEs":"La piedra especial que traemos de Alemania","titleEn":"The special stone we bring in from Germany","leadEs":"","leadEn":"","bullets":[{"es":"","en":""}],"ctaEs":"Consultar disponibilidad","ctaEn":"Ask about availability"},"steps":[{"titleEs":"Nos cuentas el proyecto","titleEn":"Tell us about the project","textEs":"","textEn":""}],"gallery":[],"galleryNoteEs":"","galleryNoteEn":"","benefits":[{"icon":"check","titleEs":"Material que dura","titleEn":"Materials that last","textEs":"","textEn":""}],"faq":[{"qEs":"¿Cuánto cuesta una reforma?","qEn":"How much does a remodel cost?","aEs":"","aEn":""}],"footerAboutEs":"","footerAboutEn":""};
+
+boot();
+})();
+</script>
+</body>
+</html>
