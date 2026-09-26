@@ -10,5 +10,5 @@ pages_build_output_dir = "."
 # Cloudflare dashboard → Workers & Pages → KV → Create namespace
 # y se enlaza en Pages → Settings → Functions → KV namespace bindings
 # con el nombre de variable exacto: PINEROCK_KV
-[[kv_namespaces]]
-binding = "PINEROCK_KV"
+
+
