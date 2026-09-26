@@ -12,4 +12,4 @@ pages_build_output_dir = "."
 # con el nombre de variable exacto: PINEROCK_KV
 [[kv_namespaces]]
 binding = "PINEROCK_KV"
-id = "8a01ac702bf4f9082019bdc5b29c5b7"
+id = "8a01ac702bf4ff9082019bdc5b29c5b7"
